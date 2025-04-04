@@ -1,11 +1,11 @@
 import axios from "axios"; 
 import React, { useEffect, useState } from "react";
-import movieData from "../MovieData";
+import SiderBar from "../SiderBar";
 
 const options = {
   headers: {
     accept: "application/json",
-    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiM2VmMGNhZWExZTU2ODZhN2NhMzUzOTdmMDc5YTA5OSIsIm5iZiI6MTc0MzAwODUzNi42OCwic3ViIjoiNjdlNDMzMTgwZWU1M2Q0ZTcxZjBkMWQ5Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.B6o2T_ut2lUPR_S_fA8KvwP9C6070aQ_8XQnI2mZAsI", // Replace with your token
+    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiM2VmMGNhZWExZTU2ODZhN2NhMzUzOTdmMDc5YTA5OSIsIm5iZiI6MTc0MzAwODUzNi42OCwic3ViIjoiNjdlNDMzMTgwZWU1M2Q0ZTcxZjBkMWQ5Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.B6o2T_ut2lUPR_S_fA8KvwP9C6070aQ_8XQnI2mZAsI", 
   },
 };
 
@@ -22,6 +22,9 @@ const MovieList = () => {
   const [featuredMovie, setFeaturedMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [OpenSideBar, setOpenSideBar] = useState(true);
+  
+  
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -67,28 +70,10 @@ const MovieList = () => {
     <div className="flex bg-black min-h-screen">
       <div className="absolute inset-0 bg-black/10"></div>
 
-      {/* Sidebar */}
-      <div className="w-[300px] h-screen bg-[rgb(33,32,30)] fixed top-0 left-0 p-5 z-20 border border-white">
-        <div className="mt-12">
-          <ul>
-            {movieData.map((val, key) => (
-              <li
-                className="flex flex-row text-white p-4 gap-4 cursor-pointer"
-                key={key}
-                onClick={() => {
-                  window.location.pathname = val.link;
-                }}
-              >
-                <div>{val.icon}</div>
-                <div>{val.title}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <SiderBar setOpenSideBar={setOpenSideBar} />
 
       {/* Main Content */}
-      <div className="ml-[300px] flex-1 overflow-y-auto p-5">
+      <div className={`  flex-1 overflow-y-auto p-5 ${OpenSideBar ? "ml-[300px]" : "ml-0 w-full"}`}>
         {loading && (
           <div className="flex justify-center items-center h-screen">
             <p className="text-white text-xl">Loading movies...</p>
@@ -109,23 +94,23 @@ const MovieList = () => {
 
         {/* Hero Section  */}
         {featuredMovie && (
-          <div className="relative w-full h-[70vh] flex items-center justify-center text-center rounded-lg overflow-hidden mb-8">
+          <div className="relative w-full h-[70vh] flex items-center justify-center text-center object-cover overflow-hidden mb-8">
             <img
               src={`https://image.tmdb.org/t/p/original${featuredMovie.backdrop_path}`}
               alt={featuredMovie.original_name || featuredMovie.title}
-              className="absolute w-full h-full object-cover"
+              className="absolute w-full h-full object-cover  rounded"
             />
             <div className="absolute inset-0 bg-black/60"></div>
             <div className="relative z-10 max-w-3xl px-6 text-white">
               <h1 className="text-4xl font-bold">{featuredMovie.original_name || featuredMovie.title}</h1>
               <p className="text-lg mt-4">{featuredMovie.overview || "No description available."}</p>
-              <button className="mt-6 bg-red-600 px-6 py-3 rounded-lg font-bold">Watch Now</button>
+              <button className="mt-6 bg-green-900 px-6 py-3 rounded-lg font-bold">Watch Now</button>
             </div>
           </div>
         )}
 
         {/* Movie Rows */}
-        <div className="pb-20"> {/* Added padding at bottom to ensure visibility */}
+        <div className="pb-20 w-full "> 
           {Object.entries(movies).map(([genre, movieList]) => (
             movieList && movieList.length > 0 ? (
               <div key={genre} className="mb-10">
@@ -136,7 +121,7 @@ const MovieList = () => {
                       <img
                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         alt={movie.original_name || movie.title}
-                        className="w-full h-[300px] object-cover rounded-lg"
+                        className="w-full h-[300px] object-cover rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                       />
                       <p className="text-white mt-2 text-center truncate px-2">{movie.original_name || movie.title}</p>
                     </div>

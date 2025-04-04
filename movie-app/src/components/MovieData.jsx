@@ -9,11 +9,12 @@ import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 
+
  const MovieData = [
 {
     title:"Home",
     icon: <LocalMoviesOutlinedIcon />,
-    link: "/home"
+    link: "/movielist.jsx"
 
 },
 
@@ -56,13 +57,6 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
     title:"Settings",
     icon: <TuneOutlinedIcon/>,
     link: "/settings"
-
-}, 
-
-{
-    title:"Logout",
-    icon: <LogoutOutlinedIcon/>,
-    link: "/logout"
 
 }
 ]

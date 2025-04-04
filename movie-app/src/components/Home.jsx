@@ -12,7 +12,8 @@ function Home() {
         <p className='text-lg mb-5 text-center'>
           ENJOY UNLIMITED MOVIES,<br />
           PODCAST, AND MORE </p>
-          <Link to="/Login.jsx" className='bg-blue-800 text-white px-6 py-3 rounded mt-6 w-1/2'>Login</Link>
+          <Link to="/Login.jsx" className='bg-green-800 text-white px-6 py-3 rounded mt-6 w-1/2'>Login</Link>
+          <p className='pt-5'>No accountt? <a href="/signup.jsx" className='hover:underline focus:underline  text-green-700 font-bold'>Sign Up</a></p>
         </div>
         </div>
       </div>

@@ -1,7 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContext'
 
 const Login = () => {
+   const [email, setEmail] =useState('')
+    const [password, setPassword] =useState('') 
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+  
+    const {user, LogIn } = UserAuth()
+  
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      setError('')
+      
+      try {
+        await LogIn (email, password)
+        navigate("/movielist.jsx")
+  
+      } catch (error) {
+        console.log(error)
+        setError(error.message)
+      }
+    }
+
   return (
       <div className='h-screen w-full bg-cover bg-center flex items-center justify-center' style={{backgroundImage: "url('https://4kwallpapers.com/images/wallpapers/zack-snyders-justice-league-2021-movies-superman-clark-kent-2560x1440-4861.jpg')"}}>
         <div className="absolute inset-0 bg-black/60"></div>
@@ -10,9 +33,11 @@ const Login = () => {
 
         <h1 className='font-bold text-3xl text-center mt-10'>Welcome Back</h1>
         <p className='text-center'>Enter Your Details</p>
-        <form className='w-full flex flex-col py-4 '>
-          <input type="email" placeholder="Email" autoComplete='email' className='p-3 my-2 bg-[#535353] rounded'/>
-          <input type="password" placeholder='Password' autoComplete='password' className='p-3 my-2 bg-[#535353] rounded'/>
+        <form onSubmit={handleSubmit } className='w-full flex flex-col py-4 '>
+          <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" autoComplete='email' className='p-3 my-2 bg-[#535353] rounded'/>
+          {error ? <p className='bg-red-700 p-0.5 rounded m-1.5 text-center'>Incorrect Email </p> : null}
+          <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' autoComplete='password' className='p-3 my-2 bg-[#535353] rounded'/>
+         {error ? <p className='bg-red-700 p-0.5 rounded m-1.5 text-center'>Incorrect Password</p> : null}
           <button className='bg-green-800 py-3.5 px-12 cursor-pointer mt-2 rounded'>Login</button>
         </form>
         <div>
