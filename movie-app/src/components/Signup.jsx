@@ -39,7 +39,7 @@ const Signup = () => {
             </form>
             <div>
               <p><input type="checkbox" className='mr-2'/>Remember Me</p>
-              <p className='mt-1'>Have an account? <Link to="/login.jsx" className='hover:underline focus:underline text-green-700 font-bold'>Login</Link></p></div>
+              <p className='mt-1'>Have an account? <Link to="/login" className='hover:underline focus:underline text-green-700 font-bold'>Login</Link></p></div>
             </div>
             </div>
          
