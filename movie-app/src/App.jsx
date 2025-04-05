@@ -19,9 +19,9 @@ function App() {
     <Navbar/>
       <Routes>
       <Route path='/' element={ <Home />}/>
-      <Route path='/login.jsx' element={ <Login/>}/>
-      <Route path='signup.jsx' element={ <Signup/>}/>
-      <Route path='movielist.jsx' element={ <ProtectedRoute><MovieList /></ProtectedRoute>}/>
+      <Route path='/login' element={ <Login/>}/>
+      <Route path='signup' element={ <Signup/>}/>
+      <Route path='movielist' element={ <ProtectedRoute><MovieList /></ProtectedRoute>}/>
       <Route path='/favorite' element={ <ProtectedRoute><Favorite /></ProtectedRoute>}/>
       <Route path='/trending' element={ <ProtectedRoute><Trending /></ProtectedRoute>}/>
       <Route path='*' element={ <Pagenotfound/>}/>

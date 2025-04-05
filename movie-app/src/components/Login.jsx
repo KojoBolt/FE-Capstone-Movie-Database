@@ -17,7 +17,7 @@ const Login = () => {
       
       try {
         await LogIn (email, password)
-        navigate("/movielist.jsx")
+        navigate("/movielist")
   
       } catch (error) {
         console.log(error)

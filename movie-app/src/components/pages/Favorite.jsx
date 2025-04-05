@@ -55,9 +55,9 @@ const Favorite = () => {
       <SiderBar setOpenSideBar={setOpenSideBar} />
       
       
-      <div className={`flex flex-wrap gap-6 p-8 transition-all duration-300 ${OpenSideBar ? "ml-[250px]" : "ml-0 w-full justify-center"}`}>
+      <div className={`flex flex-wrap gap-6 p-8 transition-all duration-300  ${OpenSideBar ? "ml-[250px]" : "ml-0 w-full justify-center"}`}>
         {movies.slice(0, 3).map((movie) => (
-          <div key={movie.id} className="ml-[100px] rounded-xl w-50 hover:scale-105 transition-transform duration-300">
+          <div key={movie.id} className=" md:ml-[100px] lg:ml-[100px] xl:ml-[100px] 2xl:ml-[100px]  rounded-xl w-50 hover:scale-105 transition-transform duration-300">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.original_title}
@@ -76,7 +76,7 @@ const Favorite = () => {
       
       <div className={`${OpenSideBar ? "ml-[400px]" : "ml-0"}`}>
         {currentMovies.map((movie) => (
-          <div key={movie.id} className="flex flex-wrap gap-6 p-8 transition-all duration-300">
+          <div key={movie.id} className="flex flex-wrap gap-6 p-8 transition-all duration-300 m-auto">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt={movie.title}

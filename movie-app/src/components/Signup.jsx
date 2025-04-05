@@ -15,7 +15,7 @@ const Signup = () => {
     
     try {
       await signUp(email, password)
-      navigate("/movielist.jsx")
+      navigate("/movielist")
 
     } catch (error) {
       console.log(error)
