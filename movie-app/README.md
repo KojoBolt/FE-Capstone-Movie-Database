@@ -30,7 +30,7 @@ ALXFLIX is a modern and user-friendly movie database website built using **React
    ```
 3. Create a `.env` file in the root directory and add your TMDB API key:
    ```sh
-   REACT_APP_TMDB_API_KEY=your_api_key_here
+   REACT_APP_TMDB_API_KEY=API-KEY
    ```
 4. Start the development server:
    ```sh
